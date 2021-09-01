@@ -33,5 +33,5 @@ build/
 .vscode/
 
 ### postgres ###
-data/postgres
+data/
 
