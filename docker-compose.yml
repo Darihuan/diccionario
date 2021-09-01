@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  dbpostgresql:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=diccionario
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - diccionario
+
+  app:
+    container_name: diccionario-daniel
+    image: darihuan/diccionario
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dbpostgresql
+    networks:
+      - diccionario
+
+networks:
+  diccionario:
+    external: false
+
+

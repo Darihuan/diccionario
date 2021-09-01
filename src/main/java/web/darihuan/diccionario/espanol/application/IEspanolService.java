@@ -7,7 +7,7 @@ import web.darihuan.diccionario.espanol.infrastructure.controller.dto.EspanolSim
 import java.util.List;
 
 public interface IEspanolService {
-    EspanolSimpleOutputDto addPalabra(EspanolInputDto palabra) throws Exception;
+    EspanolSimpleOutputDto addPalabra(EspanolInputDto palabra);
 
     EspanolSimpleOutputDto updatePalabra(EspanolInputDto palabraNueva, String palabraVieja);
 

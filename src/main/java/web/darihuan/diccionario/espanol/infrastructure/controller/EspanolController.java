@@ -3,7 +3,9 @@ package web.darihuan.diccionario.espanol.infrastructure.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import web.darihuan.diccionario.espanol.application.EspanolServiceImp;
+import web.darihuan.diccionario.core.exception.ConflictException;
+import web.darihuan.diccionario.core.exception.NotFoundException;
+import web.darihuan.diccionario.espanol.application.IEspanolService;
 import web.darihuan.diccionario.espanol.infrastructure.controller.dto.EspanolInputDto;
 import web.darihuan.diccionario.espanol.infrastructure.controller.dto.EspanolOutputDto;
 import web.darihuan.diccionario.espanol.infrastructure.controller.dto.EspanolSimpleOutputDto;
@@ -12,14 +14,17 @@ import javax.validation.Valid;
 
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("espanol")
 public class EspanolController {
     @Autowired
-    EspanolServiceImp espanolservice;
+    IEspanolService espanolservice;
 
     @PostMapping
-    public ResponseEntity<EspanolSimpleOutputDto> addPalabra(@RequestBody @Valid EspanolInputDto word) {
-        return ResponseEntity.status(202).body(this.espanolservice.addPalabra(word));
+    public ResponseEntity<?> addPalabra(@RequestBody @Valid EspanolInputDto word) {
+
+            return ResponseEntity.status(202).body(this.espanolservice.addPalabra(word));
+
 
     }
 

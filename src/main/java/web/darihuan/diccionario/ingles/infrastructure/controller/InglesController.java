@@ -3,7 +3,7 @@ package web.darihuan.diccionario.ingles.infrastructure.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import web.darihuan.diccionario.ingles.application.InglesServiceImp;
+import web.darihuan.diccionario.ingles.application.IInglesService;
 import web.darihuan.diccionario.ingles.infrastructure.controller.dto.InglesInputDto;
 import web.darihuan.diccionario.ingles.infrastructure.controller.dto.InglesOutputDto;
 import web.darihuan.diccionario.ingles.infrastructure.controller.dto.InglesSimpleOutputDto;
@@ -11,11 +11,12 @@ import web.darihuan.diccionario.ingles.infrastructure.controller.dto.InglesSimpl
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController()
+@RestController
+@CrossOrigin("*")
 @RequestMapping("ingles")
 public class InglesController {
     @Autowired
-    InglesServiceImp inglesService;
+    IInglesService inglesService;
 
     @PostMapping
     public ResponseEntity<InglesSimpleOutputDto> addPalabra(@RequestBody @Valid InglesInputDto word) {

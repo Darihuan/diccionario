@@ -8,9 +8,7 @@ import web.darihuan.diccionario.espanol.infrastructure.controller.dto.EspanolOut
 import web.darihuan.diccionario.espanol.infrastructure.controller.dto.EspanolSimpleOutputDto;
 import web.darihuan.diccionario.ingles.infrastructure.controller.dto.InglesSimpleOutputDto;
 
-import javax.persistence.CascadeType;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 
 @Component
@@ -32,12 +30,13 @@ public class EspanolMapper {
         convertir.setDescripcion(espanol.getDescripcion());
         convertir.setFechaAlta(espanol.getFechaAlta());
         convertir.setFechaModificacion(espanol.getFecha_modif());
-        ArrayList<InglesSimpleOutputDto>palabrasingles=new ArrayList<>();
-        espanol.getPalabrasIngles().stream().forEach(palabra->palabrasingles.add(this.inglesMapper.toSimpleOutputDto(palabra)));
+        ArrayList<InglesSimpleOutputDto> palabrasingles = new ArrayList<>();
+        espanol.getPalabrasIngles().stream().forEach(palabra -> palabrasingles.add(this.inglesMapper.toSimpleOutputDto(palabra)));
         convertir.setPalabrasIngles(palabrasingles);
 
         return convertir;
     }
+
     public EspanolSimpleOutputDto toSimpleOutputDto(Espanol espanol) {
         EspanolSimpleOutputDto convertir = new EspanolSimpleOutputDto();
         convertir.setId(espanol.getId());
